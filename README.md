@@ -4,7 +4,7 @@ Extracts algorithms from Latex files, and generates the corresponding MIPS progr
 
 ## Prerequisites
 
-In order to test if the compiler works correctly you'll need Spim, that you can get with the following command on Debian-based systems such as Ubuntu:
+In order to test if the compiler works correctly you'll need Spim. You can get it with the following command on Debian-based systems such as Ubuntu:
 ```
 sudo apt-get install spim
 ```
