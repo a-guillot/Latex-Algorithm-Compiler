@@ -1,0 +1,68 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+
+% --- START - HEADER TO SUPPORT TexSci ALGORITHMS IN LaTeX DOCUMENTS
+\usepackage[vlined,ruled]{algorithm2e}
+\usepackage{amssymb}
+\usepackage{amsmath,alltt}
+\newenvironment{texsci}[1]{%
+\vspace{1cm}
+\renewcommand{\algorithmcfname}{Algorithm}
+\begin{algorithm}[H]
+\label{#1}
+\caption{#1}
+\SetKwInOut{Constant}{Constant}
+\SetKwInOut{Input}{Input}
+\SetKwInOut{Output}{Output}
+\SetKwInOut{Global}{Global}
+\SetKwInOut{Local}{Local}
+}{%
+\end{algorithm}
+\vspace{1cm}
+}
+\newcommand{\true}{\mbox{\it true}}
+\newcommand{\false}{\mbox{\it false}}
+\newcommand{\Boolean}{\{\true,\false\}}
+\newcommand{\Integer}{\mathbb{Z}}
+\newcommand{\Real}{\mathbb{R}}
+% --- END - HEADER TO SUPPORT TexSci ALGORITHMS IN LaTeX DOCUMENTS
+
+\title{TexSci Test Suite -- Test 12\\ Test boucle {\tt while}}
+\date{}
+
+\begin{document}
+\maketitle
+
+Test de boucle {\tt while} avec test simple. Le résultat devrait être {\tt -55 55}.
+
+\begin{texsci}{main}
+\Local{$a \in \Integer,
+        b \in \Integer,
+        c \in \Integer,
+        d \in \Integer,
+        e \in \Integer$}
+\BlankLine
+
+$\mbox{printText($"Doit afficher -55 55"$)}$\;
+
+$a \leftarrow 1$\;
+$b \leftarrow 2$\;
+$c \leftarrow -2$\;
+$d \leftarrow 54$\;
+$e \leftarrow 1$\;
+\While{$e$} {
+  $c \leftarrow c + 1$\;
+  $b \leftarrow b - 1$\;
+  \If{$c > d$}{
+    $e \leftarrow 0$\;
+  }
+}
+\eIf{$b = -55 \wedge c = 55$}{
+  $\mbox{printInt($1$)}$\;
+}{
+  $\mbox{printInt($0$)}$\;
+}
+\end{texsci}
+
+\end{document}

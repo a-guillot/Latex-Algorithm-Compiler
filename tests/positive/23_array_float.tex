@@ -1,0 +1,56 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+
+% --- START - HEADER TO SUPPORT TexSci ALGORITHMS IN LaTeX DOCUMENTS
+\usepackage[vlined,ruled]{algorithm2e}
+\usepackage{amssymb}
+\usepackage{amsmath,alltt}
+\newenvironment{texsci}[1]{%
+\vspace{1cm}
+\renewcommand{\algorithmcfname}{Algorithm}
+\begin{algorithm}[H]
+\label{#1}
+\caption{#1}
+\SetKwInOut{Constant}{Constant}
+\SetKwInOut{Input}{Input}
+\SetKwInOut{Output}{Output}
+\SetKwInOut{Global}{Global}
+\SetKwInOut{Local}{Local}
+}{%
+\end{algorithm}
+\vspace{1cm}
+}
+\newcommand{\true}{\mbox{\it true}}
+\newcommand{\false}{\mbox{\it false}}
+\newcommand{\Boolean}{\{\true,\false\}}
+\newcommand{\Integer}{\mathbb{Z}}
+\newcommand{\Real}{\mathbb{R}}
+% --- END - HEADER TO SUPPORT TexSci ALGORITHMS IN LaTeX DOCUMENTS
+
+\title{TexSci Test Suite -- Test 15\\ Test tableau 1D}
+\date{}
+
+\begin{document}
+\maketitle
+
+Test des tableaux 1D. Le tableau devrait contenir les premiers termes de la suite de Fibonacci : {\tt 0 1 1 2 3 5 8 13}.
+
+\begin{texsci}{main}
+\Local{$A \in \Real^{8},
+        i \in \Real,
+        j \in \Real,
+        k \in \Real$}
+\BlankLine
+$A_{0} \leftarrow 5.0$\;
+$A_{1} \leftarrow 2.0$\;
+$i \leftarrow A_{0} \times A_{1} + 5.0$\;
+
+\eIf{$i = 15.0$}{
+  $\mbox{printInt($1$)}$\;
+}{
+  $\mbox{printInt($0$)}$\;
+}
+\end{texsci}
+
+\end{document}

@@ -1,0 +1,69 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+
+% --- START - HEADER TO SUPPORT TexSci ALGORITHMS IN LaTeX DOCUMENTS
+\usepackage[vlined,ruled]{algorithm2e}
+\usepackage{amssymb}
+\usepackage{amsmath,alltt}
+\newenvironment{texsci}[1]{%
+\vspace{1cm}
+\renewcommand{\algorithmcfname}{Algorithm}
+\begin{algorithm}[H]
+\label{#1}
+\caption{#1}
+\SetKwInOut{Constant}{Constant}
+\SetKwInOut{Input}{Input}
+\SetKwInOut{Output}{Output}
+\SetKwInOut{Global}{Global}
+\SetKwInOut{Local}{Local}
+}{%
+\end{algorithm}
+\vspace{1cm}
+}
+\newcommand{\true}{\mbox{\it true}}
+\newcommand{\false}{\mbox{\it false}}
+\newcommand{\Boolean}{\{\true,\false\}}
+\newcommand{\Integer}{\mathbb{Z}}
+\newcommand{\Real}{\mathbb{R}}
+% --- END - HEADER TO SUPPORT TexSci ALGORITHMS IN LaTeX DOCUMENTS
+
+\title{TexSci Test Suite -- Test 16\\ Test tableaux 2D}
+\date{}
+
+\begin{document}
+\maketitle
+
+Test des tableaux 2D. Le tableau devrait contenir le triangle de Pascal :\\
+{\tt   1 }\\
+{\tt   1   1 }\\
+{\tt   1   2   1 }\\
+{\tt   1   3   3   1 }\\
+{\tt   1   4   6   4   1 }\\
+{\tt   1   5  10  10   5   1 }\\
+{\tt   1   6  15  20  15   6   1 }\\
+{\tt   1   7  21  35  35  21   7   1 }
+
+\begin{texsci}{main}
+\Local{$Pascal \in \Integer^{8 \times 8},
+        i \in \Integer,
+        j \in \Integer$}
+\BlankLine
+\For{$i \leftarrow 0$ \KwTo $7$} {
+  \For{$j \leftarrow 0$ \KwTo $i$} {
+    \eIf{$i = j \vee j = 0$} {
+       $Pascal_{i,j} \leftarrow 1$\;
+    }{
+       $Pascal_{i,j} \leftarrow Pascal_{i-1,j} + Pascal_{i-1,j-1}$\;
+    }
+  }
+}
+\For{$i \leftarrow 0$ \KwTo $7$} {
+  \For{$j \leftarrow 0$ \KwTo $i$} {
+    $\mbox{printInt($Pascal_{i,j}$)}$\;
+  }
+  \tcc{Fonction d'affichage d'un saut de ligne:}
+  $\mbox{println()}$\;}
+\end{texsci}
+
+\end{document}

@@ -1,0 +1,54 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+
+% --- START - HEADER TO SUPPORT TexSci ALGORITHMS IN LaTeX DOCUMENTS
+\usepackage[vlined,ruled]{algorithm2e}
+\usepackage{amssymb}
+\usepackage{amsmath,alltt}
+\newenvironment{texsci}[1]{%
+\vspace{1cm}
+\renewcommand{\algorithmcfname}{Algorithm}
+\begin{algorithm}[H]
+\label{#1}
+\caption{#1}
+\SetKwInOut{Constant}{Constant}
+\SetKwInOut{Input}{Input}
+\SetKwInOut{Output}{Output}
+\SetKwInOut{Global}{Global}
+\SetKwInOut{Local}{Local}
+}{%
+\end{algorithm}
+\vspace{1cm}
+}
+\newcommand{\true}{\mbox{\it true}}
+\newcommand{\false}{\mbox{\it false}}
+\newcommand{\Boolean}{\{\true,\false\}}
+\newcommand{\Integer}{\mathbb{Z}}
+\newcommand{\Real}{\mathbb{R}}
+% --- END - HEADER TO SUPPORT TexSci ALGORITHMS IN LaTeX DOCUMENTS
+
+\title{TexSci Test Suite -- Test 18\\ Fonctions récursives}
+\date{}
+
+\begin{document}
+\maketitle
+
+Test des appels de fonctions récursives. Ici il y a plusieurs algorithmes TexSci. Le point d'entrée au programme est l'algorithme {\tt main}. Ici le résultat devrait être {\tt 120}.
+
+\begin{texsci}{factorielleRec}
+\Input{$n \in \Integer$}
+\Output{$accu \in \Integer$}
+\BlankLine
+  \eIf{$n \neq 0$}{$accu \leftarrow \mbox{factorielleRec($n-1$)} \times n$\;}{$accu \leftarrow 1$\;}
+\end{texsci}
+
+
+\begin{texsci}{main}
+\Local{$fac \in \Integer$}
+\BlankLine
+$fac \leftarrow \mbox{factorielleRec($5$)}$\;
+$\mbox{printInt($fac$)}$\;
+\end{texsci}
+
+\end{document}
